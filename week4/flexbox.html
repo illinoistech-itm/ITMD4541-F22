@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin:0;
+    }
+
+    #flexcontainer {
+      display: flex;
+      justify-content: center;
+    }
+
+    .flexitem {
+      background-color: aqua;
+
+    }
+    #main-section {
+      background-color: yellow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .section-full {
+      height: 100vh;
+      background-color: #ddd;
+    }
+    #main-body {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    header
+  </header>
+
+  <section id="main-body">
+    <div>
+      col 1
+    </div>
+    <div>
+      col 2
+    </div>
+  </section>
+
+  <footer>
+    footer
+  </footer>
+
+
+
+  <div id="flexcontainer">
+    <div class="flexitem">Box 1</div>
+    <div class="flexitem">Box 2</div>
+    <div class="flexitem">Box 3</div>
+    <div class="flexitem">Box 4</div>
+    <div class="flexitem">Box 5</div>
+    <div class="flexitem">Box 6</div>
+  </div>
+
+  <section class="section-full">
+    <div>First section</div>
+  </section>
+
+  <section class="section-full" id="main-section">
+    <h2>This is a section h2!</h2>
+  </section>
+</body>
+</html>
