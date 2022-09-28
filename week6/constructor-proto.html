@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>constructor function w/ proto</title>
+
+  <script>
+    "use strict";
+    function Car(doors, color){
+      this.doors = doors;
+      this.color = color;
+      let miles = 0;
+      let that = this;
+
+      let report = function(){
+        console.log('Run Report:');
+        console.log('Miles: ' + miles);
+        //console.log('Doors: ' + this.doors);
+        console.log('Doors: ' + that.doors);
+      };
+
+      this.start = function(){
+        console.log('Car with ' + this.doors + ' doors has started!');
+        console.log('Miles: ' + miles);
+      };
+
+      this.addMile = function(){
+        miles = miles + 1;
+      };
+
+      this.runReport = function(){
+        //report.call(this);
+        report();
+      };
+    }
+
+    Car.prototype.run = function(){
+      console.log(this.color + ' car with ' + this.doors + ' doors has started!');
+      this.runReport();
+    };
+
+    Car.year = '1988';
+
+    let c = new Car(4, 'black');
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>
