@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>AJAX OBJ or ARR</title>
+</head>
+<body>
+<button id="btn">run</button>
+<div id="results"></div>
+	<script>
+	document.getElementById('btn').addEventListener('click', function(){
+
+		var myRequest = new XMLHttpRequest();
+		myRequest.onreadystatechange = function(){
+			if (myRequest.readyState === 4 && myRequest.status === 200) {
+				var data = JSON.parse(myRequest.responseText);
+				console.log(myRequest.responseText);
+
+				if (Array.isArray(data)) {
+					console.log('Data Array: ')
+					parseData(data);
+				} else {
+					console.log('Data Single Object: ');
+					//console.log(data);
+					parseData(Array(data));
+				}
+
+			}
+		};
+		//myRequest.open('GET', 'data-a.php', true);
+		myRequest.open('GET', 'data-o.php', true);
+		myRequest.send();
+
+		function parseData(arr) {
+			console.log(arr);
+			var resultDiv = document.getElementById('results');
+			for (var i = 0; i < arr.length; i++) {
+				resultDiv.innerHTML += arr[i].name + ' : ' + arr[i].age + '<br>';
+			};
+		}
+	}); //end event listener
+	</script>
+</body>
+</html>
