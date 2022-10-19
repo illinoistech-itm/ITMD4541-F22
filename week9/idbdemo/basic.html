@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript">
+		document.addEventListener("DOMContentLoaded", function(){
+			console.log('DOM Loaded');
+
+			let db;
+			let openRequest = window.indexedDB.open('basicF21', 3);
+
+			openRequest.onupgradeneeded = function(e){
+				console.log('Upgrade Needed!');
+
+				let thisDB = e.target.result;
+
+				if (!thisDB.objectStoreNames.contains('firstOS')) {
+					thisDB.createObjectStore('firstOS');
+				}
+
+				if (!thisDB.objectStoreNames.contains("person")) {
+                	thisDB.createObjectStore("person", {autoIncrement: true});
+            	}
+			};
+
+			openRequest.onsuccess = function(e){
+				console.log('success');
+
+				db = e.target.result;
+				// let trans = db.transaction(['firstOS'], 'readwrite');
+				// let store = trans.objectStore('firstOS');
+				// let obj = {name: 'brian', color: 'red'};
+				// store.add(obj, 'bbailey4');
+				var trans = db.transaction(['person'], 'readwrite');
+				var store = trans.objectStore('person');
+				var obj = {name: 'brian', color: 'red'};
+				store.add(obj);
+			};
+
+			openRequest.onerror = function(e) {
+				console.log('error');
+			};
+
+
+		}); //dom ready
+	</script>
+</body>
+</html>
