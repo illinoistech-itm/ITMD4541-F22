@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+
+<script>
+  function init() {
+    var stage = new createjs.Stage("demoCanvas");
+	
+	var qcurve = new createjs.Shape();
+	qcurve.graphics.beginStroke('#000').moveTo(75,25).quadraticCurveTo(25,25,25,62.5).endStroke();
+	stage.addChild(qcurve);
+
+	var bcurve = new createjs.Shape();
+	bcurve.graphics.beginStroke('#000').moveTo(200,50).bezierCurveTo(250,30,275,120,300,100).endStroke();
+	stage.addChild(bcurve);
+
+	stage.update();
+  }
+</script>
+
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="400" height="300"></canvas>
+</body>
+</html>

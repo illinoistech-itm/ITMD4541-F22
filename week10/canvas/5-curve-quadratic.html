@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(){
+			console.log('DOM Loaded...');
+
+			var canvas = document.getElementById('mycanvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+
+				// Quadratic Bézier curve
+				ctx.beginPath();
+				ctx.moveTo(50, 20);
+				ctx.quadraticCurveTo(250, 50, 50, 100);
+				ctx.stroke();
+
+				// Start and end points
+				ctx.fillStyle = 'blue';
+				ctx.beginPath();
+				ctx.arc(50, 20, 5, 0, 2 * Math.PI);   // Start point
+				ctx.arc(50, 100, 5, 0, 2 * Math.PI);  // End point
+				ctx.fill();
+
+				// Control point
+				ctx.fillStyle = 'red';
+				ctx.beginPath();
+				ctx.arc(250, 50, 5, 0, 2 * Math.PI);
+				ctx.fill();
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="400" height="300">
+		I don't support the canvas element fallback content
+	</canvas>
+</body>
+</html>

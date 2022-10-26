@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(){
+			console.log('DOM Loaded...');
+
+			var canvas = document.getElementById('mycanvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+
+				ctx.strokeStyle = '#00cc00';
+				ctx.setLineDash([8,2]);
+				ctx.lineWidth = 8;
+				ctx.strokeRect(10,10,200,200);
+
+
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="400" height="300">
+		I don't support the canvas element fallback content
+	</canvas>
+</body>
+</html>

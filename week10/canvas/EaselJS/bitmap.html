@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+
+<script>
+  function init() {
+    var stage = new createjs.Stage("demoCanvas");
+	
+	var bitmap = new createjs.Bitmap('IIT-Footer-Logo.png');
+	var bitmap2 = bitmap.clone();
+	bitmap.x = 10;
+	bitmap.y = 5;
+	bitmap2.x = 10;
+	bitmap2.y = 150;
+	bitmap2.scaleX = 0.5;
+	bitmap2.scaleY = 0.5;
+	// same issue with bitmap loading as nomrmal canvas. Use onload handler.
+	stage.addChild(bitmap);
+	stage.addChild(bitmap2);
+
+	createjs.Ticker.addEventListener("tick", tick);
+	createjs.Ticker.setFPS(10);
+	function tick() { 
+		console.log("TICK!!!");
+		stage.update();
+	}
+  }
+</script>
+
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="400" height="300" style="background-color: black;"></canvas>
+</body>
+</html>

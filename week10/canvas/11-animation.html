@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(){
+			console.log('DOM Loaded...');
+
+			var canvas = document.getElementById('mycanvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+				var x = 55;
+				var y = 55;
+				var size = 50;
+				var dx = 1;
+				var dy = 5;
+
+				console.log('request frame');
+				window.requestAnimationFrame(drawFrame);
+			}
+
+			function drawFrame(){
+				var ctx = canvas.getContext('2d');
+				ctx.clearRect(0,0,400,300); // clear canvas
+				//console.log('x ' + x);
+				//ctx.fillRect(x,y,size,size);
+				ctx.beginPath();
+				ctx.arc(x,y,size,0,2*Math.PI);
+				ctx.fill();
+				if ((x - size) <= 0 || (x + size) >= 400) {
+					dx = -dx;
+				}
+				if ((y - size) <= 0 || (y + size) >= 300) {
+					dy = -dy;
+				}
+
+				x += dx;
+				y += dy;
+				
+				window.requestAnimationFrame(drawFrame);
+				//console.log('draw frame');
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="400" height="300">
+		I don't support the canvas element fallback content
+	</canvas>
+</body>
+</html>

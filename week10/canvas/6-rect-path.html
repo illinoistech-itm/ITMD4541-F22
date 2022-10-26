@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(){
+			console.log('DOM Loaded...');
+
+			var canvas = document.getElementById('mycanvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+
+				ctx.beginPath();
+				ctx.fillStyle = 'rgb(255,0,0)';
+    			ctx.rect(45,45,100,160);
+    			ctx.fill();
+
+    			ctx.beginPath();
+				ctx.fillStyle = 'rgb(0,0,255)';
+				ctx.rect(90,90,100,160);
+				ctx.fill();
+				ctx.stroke();
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="400" height="300">
+		I don't support the canvas element fallback content
+	</canvas>
+</body>
+</html>

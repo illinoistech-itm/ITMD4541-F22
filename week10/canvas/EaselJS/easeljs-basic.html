@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+
+<script>
+  function init() {
+    var stage = new createjs.Stage("demoCanvas");
+	
+	var rect1 = new createjs.Shape();
+	rect1.graphics.beginFill("rgb(200,0,0)").drawRect(10, 10, 55, 50);
+	stage.addChild(rect1);
+	
+	var rect2 = new createjs.Shape();
+	rect2.graphics.beginFill("rgba(0,0,200,0.5)").drawRect(30, 30, 55, 50);
+	stage.addChild(rect2);
+
+	stage.update();
+  }
+</script>
+
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="400" height="300"></canvas>
+</body>
+</html>

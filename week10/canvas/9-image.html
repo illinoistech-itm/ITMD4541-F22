@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(){
+			console.log('DOM Loaded...');
+
+			var canvas = document.getElementById('mycanvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+
+				ctx.fillStyle = '#ccc';
+				ctx.fillRect(0,0,400,300);
+
+				var img = new Image();   // Create new img element
+				img.addEventListener("load", function() {
+				  // execute drawImage statements here
+				  console.log(img);
+				  ctx.drawImage(img, 10, 5);
+				  ctx.drawImage(img, 10, 150, 300, 67);
+				  //ctx.drawImage(img, 10, 150, 200, 80);
+
+				}, false);
+				img.src = 'IIT-Footer-Logo.png'; // Set source path
+
+
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="400" height="300">
+		I don't support the canvas element fallback content
+	</canvas>
+</body>
+</html>

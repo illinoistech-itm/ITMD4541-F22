@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function(){
+			console.log('DOM Loaded...');
+
+			var canvas = document.getElementById('mycanvas');
+			if (canvas.getContext){
+				var ctx = canvas.getContext('2d');
+
+				    // Quadratric curves example
+				    ctx.beginPath();
+				    ctx.moveTo(75,25);
+				    ctx.quadraticCurveTo(15,5,25,62.5);
+				    ctx.stroke();
+
+				    // Bezier curves example
+				    ctx.beginPath();
+				    ctx.moveTo(200,50);
+				    ctx.bezierCurveTo(300,20,225,100,300,100);
+				    ctx.stroke();
+			}
+
+		});
+	</script>
+</head>
+<body>
+	<canvas id="mycanvas" width="400" height="300">
+		I don't support the canvas element fallback content
+	</canvas>
+</body>
+</html>

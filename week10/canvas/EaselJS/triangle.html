@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+
+<script>
+  function init() {
+    var stage = new createjs.Stage("demoCanvas");
+	
+	var triangle = new createjs.Shape();
+	triangle.graphics.beginFill("red").moveTo(50, 50).lineTo(100, 50).lineTo(50, 100).closePath().endFill();
+	triangle.graphics.beginStroke("#000").moveTo(50, 50).lineTo(100, 50).lineTo(50, 100).closePath().endStroke();
+	stage.addChild(triangle);
+
+	stage.update();
+  }
+</script>
+
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="400" height="300"></canvas>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset=utf-8>
+		<title>My first Three.js app</title>
+		<script src="http://threejs.org/build/three.min.js"></script>
+		<style>
+			body { margin: 0; }
+			canvas { width: 100%; height: 100% }
+		</style>
+	</head>
+	<body>
+		<script>
+			// Our Javascript will go here.
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+			//var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+			var material = new THREE.MeshPhongMaterial( { color: 0xdddddd, specular: 0x009900, shininess: 30, shading: THREE.FlatShading } );
+			var cube = new THREE.Mesh( geometry, material );
+			scene.add( cube );
+
+			camera.position.z = 5;
+
+			var spotLight = new THREE.SpotLight( 0xffffff );
+			spotLight.position.set( 200, 100, 200 );
+			spotLight.intensity = 1.1;
+
+			spotLight.castShadow = true;
+
+			spotLight.shadowMapWidth = 1024;
+			spotLight.shadowMapHeight = 1024;
+
+			spotLight.shadowCameraNear = 500;
+			spotLight.shadowCameraFar = 4000;
+			spotLight.shadowCameraFov = 30;
+
+			scene.add( spotLight );
+
+			function render() {
+				requestAnimationFrame( render );
+				renderer.render( scene, camera );
+				cube.rotation.x += 0.01;
+				cube.rotation.y += 0.01;
+			}
+			render();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+
+<script>
+  function init() {
+    var stage = new createjs.Stage("demoCanvas");
+	
+	var rect = new createjs.Shape();
+	rect.graphics.beginFill('#cc0000').rect(20,20,70,70);
+	stage.addChild(rect);
+
+	var rect2 = new createjs.Shape();
+	rect2.graphics.beginFill('#00cc00').rect(150,20,70,70);
+	rect2.rotation = 45;
+	stage.addChild(rect2);
+
+	var rect3 = new createjs.Shape();
+	rect3.graphics.beginFill('#cc0000').rect(150,20,70,70);
+	stage.addChild(rect3);
+
+
+
+	stage.update();
+  }
+</script>
+
+</head>
+<body onload="init();">
+	<canvas id="demoCanvas" width="400" height="300"></canvas>
+</body>
+</html>
