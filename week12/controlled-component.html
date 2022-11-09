@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlled Component Basics</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class ControlledComponent extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {value: ''};
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(e) {
+                this.setState({
+                    value: e.target.value
+                });
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1>Text: {this.state.value}</h1>
+                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    </div>
+                );
+            }
+        }
+
+        const container = document.getElementById('root');
+        ReactDOM.createRoot(container).render(<ControlledComponent />);
+    </script>
+</body>
+</html>

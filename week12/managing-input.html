@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Input with State in React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      .inputWrapper {
+          width: 400px;
+          padding: 20px;
+          background-color: #cccccc;
+          box-sizing: border-box;
+      }
+  </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {
+                text: 'Hello World',
+                color: '#ff0000'
+            };
+            this.changeColor = this.changeColor.bind(this);
+            this.changeText = this.changeText.bind(this);
+        }
+
+        changeText(val){
+            this.setState({
+                text: val
+            });
+        }
+
+        changeColor(val){
+            this.setState({
+                color: val
+            });
+        }
+
+        render(){
+          return (
+              <div id="app">
+                  <InputArea handleChangeColor={this.changeColor} handleChangeText={this.changeText} text={this.state.text} selected={this.state.color} />
+                  <Box text={this.state.text} color={this.state.color} />
+              </div>
+          );
+        }
+      }
+
+      function InputArea(props){
+        return (
+            <div className="inputWrapper">
+                <input onChange={(e) => props.handleChangeText(e.target.value)} type="text" value={props.text} />
+                <select onChange={(e) => props.handleChangeColor(e.target.value)} value={props.selected}>
+                    <option value="#ff0000">Red</option>
+                    <option value="#00ff00">Green</option>
+                    <option value="#0000ff">Blue</option>
+                </select>
+            </div>
+            );
+        }
+
+        function Box(props){
+            const divStyle = {
+                width: '400px',
+                height: '400px',
+                backgroundColor: props.color,
+                color: '#ffffff',
+                fontWeight: 'bold',
+                fontSize: '20px',
+                textAlign: 'center',
+                boxSizing: 'border-box',
+                padding: '20px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center'
+            };
+
+            return <div style={divStyle}>{props.text}</div>;
+        }
+
+      const container = document.getElementById('root');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+</body>
+</html>
