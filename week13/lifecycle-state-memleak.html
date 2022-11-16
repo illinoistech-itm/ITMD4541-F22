@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifecycle - State - Memory Leak Example</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> 
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class App extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    showClock: true
+                };
+                this.handleAddClock = this.handleAddClock.bind(this);
+                this.handleRemoveClock = this.handleRemoveClock.bind(this);
+            }
+
+            render(){
+                return <div>
+                    {this.state.showClock === true ? 
+                        <Clock onClockRemove={this.handleRemoveClock} /> : 
+                        <button onClick={this.handleAddClock}>Show Clock</button>}
+                    </div>;
+            }
+
+            handleAddClock(){
+                this.setState({
+                    showClock: true
+                });
+            }
+
+            handleRemoveClock(){
+                this.setState({
+                    showClock: false
+                });
+            }
+        }
+
+        class Clock extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    date: new Date()
+                };
+                this.tick = this.tick.bind(this);
+            }
+
+            render(){
+                console.log('--clock render--');
+                return <div>
+                        <h2>It is {this.state.date.toLocaleTimeString()}</h2>
+                        <button onClick={this.props.onClockRemove}>Remove Clock</button>
+                    </div>;
+            }
+
+            tick(){
+                console.log('--clock tick--');
+                this.setState({
+                    date: new Date()
+                });
+            }
+
+            componentDidMount(){
+                console.log('--clock componentDidMount--');
+                this.timerID = setInterval(() => this.tick(), 1000);
+            }
+
+            componentWillUnmount(){
+                console.log('--clock componentWillUnmount--');
+                clearInterval(this.timerID);
+            }
+
+            componentDidUpdate(){
+                console.log('--clock componentDidUpdate--');
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
