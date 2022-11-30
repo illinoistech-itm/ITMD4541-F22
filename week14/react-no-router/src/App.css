@@ -1,0 +1,33 @@
+header {
+  padding: 50px;
+  background-color: #ccc;
+}
+
+.site-name {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  padding: 0 50px;
+  background-color: #000;
+}
+
+nav ul li a {
+  padding: 15px 20px;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+}
+
+nav ul li a:hover {
+  background-color: #444;
+}
+
+.content {
+  padding: 50px;
+}
